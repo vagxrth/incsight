@@ -1,17 +1,32 @@
-import { Button, VerticalBox } from "std-widgets.slint";
+import { Button, VerticalBox, LineEdit } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
-    in-out property <int> counter: 42;
-    callback request-increase-value();
-    VerticalBox {
-        Text {
-            text: "Counter: \{root.counter}";
+    background: #12343b;
+    GridLayout {
+        padding: 50px;
+        spacing: 25px;
+        Row {
+            Text {
+                text: "INCSIGHT";
+                horizontal-alignment: center;
+                font-size: 24px;
+                font-weight: 900;
+            }
         }
+        Row {
+            LineEdit {
+                horizontal-alignment: center;
+                font-size: 16px;
+                height: 35px;
+                placeholder-text: "Enter Your Income";
 
-        Button {
-            text: "Increase value";
-            clicked => {
-                root.request-increase-value();
+            }
+        }
+        Row {
+            Button {
+                text: "Get Insight";
+                primary: true;
+                height: 35px;
             }
         }
     }
