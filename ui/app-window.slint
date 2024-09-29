@@ -1,6 +1,9 @@
 import { Button, VerticalBox, LineEdit } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
+    in property <string> insight: "";
+    in-out property <bool> display;
+    callback income-insight(string);
     background: #12343b;
     GridLayout {
         padding: 50px;
@@ -14,7 +17,7 @@ export component AppWindow inherits Window {
             }
         }
         Row {
-            LineEdit {
+            income := LineEdit {
                 horizontal-alignment: center;
                 font-size: 16px;
                 height: 35px;
@@ -27,6 +30,45 @@ export component AppWindow inherits Window {
                 text: "Get Insight";
                 primary: true;
                 height: 35px;
+                clicked => {
+                    root.display= !root.display;
+                    income-insight(income.text)
+                }
+            }
+        }
+        Row {
+            VerticalBox {
+                Rectangle {
+                    height: 100px;
+                    background: #c89666;
+                    Text {
+                        color: wheat;
+                        font-size: 16px;
+                        font-weight: 500;
+                        text: root.insight;
+                    }
+                    Rectangle {
+                        background: #c89666;
+                        x: 0;
+                        width: display ? 0px : parent.width;
+                        height: parent.height;
+                        animate width {
+                             duration: 200ms; easing: ease-in;
+                        }
+                    }
+                    Rectangle {
+                        background: #c89666;
+                        x: display ? parent.width : (parent.width)/2;
+                        width: display ? 0px : (parent.width)/2;
+                        height: parent.height;
+                        animate width {
+                            duration: 200ms; easing: ease-in;
+                        }
+                        animate x {
+                            duration: 200ms; easing: ease-in;
+                        }
+                    }
+                }
             }
         }
     }
