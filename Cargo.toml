@@ -2,6 +2,7 @@
 name = "slint-rust-template"
 version = "0.1.0"
 edition = "2021"
+description = "An Income Insight Application"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -10,3 +11,8 @@ slint = "1.7.2"
 
 [build-dependencies]
 slint-build = "1.7.2"
+
+[package.metadata.bundle]
+name = "IncSight"
+identifier = "io.github.vagxrth.incsight"
+icon = ["public/app_logo.png"]
